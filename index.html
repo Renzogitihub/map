@@ -9,28 +9,12 @@
         container: 'map', // container ID
         style: 'mapbox://styles/azmrdn1/cm49pxayi014t01qrd4iackcl', // style URL
         center: [-95.4036795, 29.7806], // Replace with your coordinates
-        zoom: 10 // Initial zoom level
+        zoom: 10, // Initial zoom level
+        attributionControl: false // Completely disable attributions
     });
 
-    // Mutation Observer to track changes in the attribution DOM
-    const observer = new MutationObserver(() => {
-        const attribution = document.querySelector('.mapboxgl-ctrl-attribution');
-        if (attribution) {
-            // Find and update the "Improve this map" link
-            const improveLink = Array.from(attribution.querySelectorAll('a')).find(link => link.textContent === 'Improve this map');
-            if (improveLink) {
-                improveLink.href = 'https://labs.mapbox.com/contribute/';
-                improveLink.target = '_blank'; // Open in a new tab
-                observer.disconnect(); // Stop observing once the link is updated
-            }
-        }
-    });
-
-    // Start observing changes in the attribution container
-    map.on('load', () => {
-        const attributionContainer = document.querySelector('.mapboxgl-ctrl-attribution');
-        if (attributionContainer) {
-            observer.observe(attributionContainer, { childList: true, subtree: true });
-        }
-    });
+    // Optional: Add a marker
+    const marker = new mapboxgl.Marker()
+        .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
+        .addTo(map);
 </script>
