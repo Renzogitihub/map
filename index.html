@@ -46,10 +46,10 @@
         const markerEl = document.createElement('div');
         markerEl.style.width = '20px';
         markerEl.style.height = '20px';
-        markerEl.style.backgroundColor = 'white'; // Set the marker color to white
-        markerEl.style.borderRadius = '50%';
-        markerEl.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'; // Optional: Add a shadow for visibility
-        markerEl.style.border = '2px solid black'; // Optional: Add a black border
+        markerEl.style.backgroundColor = '#ffffff'; // Explicit white color
+        markerEl.style.borderRadius = '50%'; // Makes it circular
+        markerEl.style.border = '2px solid black'; // Black border for visibility
+        markerEl.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)'; // Optional shadow for better visibility
 
         new mapboxgl.Marker(markerEl)
             .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
