@@ -5,6 +5,8 @@
 
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXptcmRuMSIsImEiOiJjbTQ5cGRwZ3QwY2V1MnNuN2xiNmtreTBmIn0.tEGvXdH-D0GVHg07GTWSPw';
+
+    // Initialize the map
     const map = new mapboxgl.Map({
         container: 'map', // container ID
         style: 'mapbox://styles/azmrdn1/cm49pxayi014t01qrd4iackcl', // style URL
@@ -13,12 +15,13 @@
         attributionControl: false // Disable the default attribution control
     });
 
+    // Add custom attribution
     map.on('load', () => {
         // Remove any default attribution elements manually
         const attributionContainers = document.querySelectorAll('.mapboxgl-ctrl-attribution');
         attributionContainers.forEach(container => container.remove());
 
-        // Add a custom attribution div manually
+        // Create and style custom attribution
         const attributionDiv = document.createElement('div');
         attributionDiv.className = 'custom-attribution';
         attributionDiv.style.position = 'absolute';
@@ -40,8 +43,8 @@
         // Append the custom attribution div to the map container
         map.getContainer().appendChild(attributionDiv);
 
-        // Add the marker to the map
-        new mapboxgl.Marker()
+        // Add the marker
+        const marker = new mapboxgl.Marker()
             .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
             .addTo(map);
     });
