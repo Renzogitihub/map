@@ -1,0 +1,19 @@
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
+
+<div id="map" style="width: 100%; height: 400px;"></div>
+
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXptcmRuMSIsImEiOiJjbTQ5cGRwZ3QwY2V1MnNuN2xiNmtreTBmIn0.tEGvXdH-D0GVHg07GTWSPw';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        style: 'mapbox://styles/azmrdn1/cm49pxayi014t01qrd4iackcl', // style URL
+        center: [-95.4036795, 29.7806], // Replace with [-95.4036795, 29.7806]
+        zoom: 10 // Initial zoom level
+    });
+
+    // Optional: Add a marker
+    const marker = new mapboxgl.Marker()
+        .setLngLat([-95.4036795, 29.7806]) // Replace with [-95.4036795, 29.7806]
+        .addTo(map);
+</script>
