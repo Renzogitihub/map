@@ -13,8 +13,12 @@
         attributionControl: false // Disable the default attribution control
     });
 
-    // Add a custom attribution div manually
     map.on('load', () => {
+        // Remove any default attribution elements manually
+        const attributionContainers = document.querySelectorAll('.mapboxgl-ctrl-attribution');
+        attributionContainers.forEach(container => container.remove());
+
+        // Add a custom attribution div manually
         const attributionDiv = document.createElement('div');
         attributionDiv.className = 'custom-attribution';
         attributionDiv.style.position = 'absolute';
@@ -26,6 +30,7 @@
         attributionDiv.style.fontSize = '12px';
         attributionDiv.innerText = '© Mapbox © OpenStreetMap';
 
+        // Append the custom attribution div to the map container
         map.getContainer().appendChild(attributionDiv);
     });
 </script>
