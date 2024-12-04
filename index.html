@@ -28,7 +28,12 @@
         attributionDiv.style.padding = '5px';
         attributionDiv.style.borderRadius = '5px';
         attributionDiv.style.fontSize = '12px';
-        attributionDiv.innerText = '© Mapbox © OpenStreetMap';
+        attributionDiv.style.lineHeight = '1.5';
+
+        // Add custom attribution text
+        attributionDiv.innerHTML = `
+            © Mapbox © OpenStreetMap Improve this map
+        `;
 
         // Append the custom attribution div to the map container
         map.getContainer().appendChild(attributionDiv);
