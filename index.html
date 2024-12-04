@@ -3,13 +3,6 @@
 
 <div id="map" style="width: 100%; height: 400px;"></div>
 
-<style>
-    /* Forcefully hide the attribution control */
-    .mapboxgl-ctrl-attribution {
-        display: none !important;
-    }
-</style>
-
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXptcmRuMSIsImEiOiJjbTQ5cGRwZ3QwY2V1MnNuN2xiNmtreTBmIn0.tEGvXdH-D0GVHg07GTWSPw';
     const map = new mapboxgl.Map({
@@ -17,8 +10,14 @@
         style: 'mapbox://styles/azmrdn1/cm49pxayi014t01qrd4iackcl', // style URL
         center: [-95.4036795, 29.7806], // Replace with your coordinates
         zoom: 10, // Initial zoom level
-        attributionControl: false // Disable default attribution control
+        attributionControl: false // Disable the default attribution control
     });
+
+    // Add custom text-only attributions
+    map.addControl(new mapboxgl.AttributionControl({
+        compact: true, // Optional: Compact layout for attribution
+        customAttribution: '© Mapbox © OpenStreetMap'
+    }));
 
     // Optional: Add a marker
     const marker = new mapboxgl.Marker()
