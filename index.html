@@ -39,5 +39,10 @@
 
         // Append the custom attribution div to the map container
         map.getContainer().appendChild(attributionDiv);
+
+        // Add the marker to the map
+        new mapboxgl.Marker()
+            .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
+            .addTo(map);
     });
 </script>
