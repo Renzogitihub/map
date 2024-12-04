@@ -42,17 +42,16 @@
         // Append the custom attribution div to the map container
         map.getContainer().appendChild(attributionDiv);
 
-        // Create the marker element
+        // Add a custom placemark marker
         const markerEl = document.createElement('div');
-        markerEl.style.width = '30px';
-        markerEl.style.height = '50px'; // Placemark proportions
-        markerEl.style.backgroundImage = 'url("https://img.icons8.com/ios-filled/50/ffffff/marker.png")';
-        markerEl.style.backgroundSize = 'contain'; // Fit the icon
+        markerEl.style.width = '25px';
+        markerEl.style.height = '50px'; // Proportions for a pin
+        markerEl.style.backgroundImage = 'url("https://img.icons8.com/ios-filled/50/ffffff/marker.png")'; // Placemark icon
+        markerEl.style.backgroundSize = 'cover'; // Fit the image
         markerEl.style.backgroundRepeat = 'no-repeat';
         markerEl.style.backgroundPosition = 'center';
 
-        // Add the marker to the map
-        new mapboxgl.Marker({ element: markerEl })
+        new mapboxgl.Marker(markerEl)
             .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
             .addTo(map);
     });
