@@ -15,7 +15,6 @@
         attributionControl: false // Disable the default attribution control
     });
 
-    // Add custom attribution
     map.on('load', () => {
         // Remove any default attribution elements manually
         const attributionContainers = document.querySelectorAll('.mapboxgl-ctrl-attribution');
@@ -43,8 +42,16 @@
         // Append the custom attribution div to the map container
         map.getContainer().appendChild(attributionDiv);
 
-        // Add the marker
-        const marker = new mapboxgl.Marker()
+        // Add a custom white marker
+        const markerEl = document.createElement('div');
+        markerEl.style.width = '20px';
+        markerEl.style.height = '20px';
+        markerEl.style.backgroundColor = 'white'; // Set the marker color to white
+        markerEl.style.borderRadius = '50%';
+        markerEl.style.boxShadow = '0 0 5px rgba(0, 0, 0, 0.5)'; // Optional: Add a shadow for visibility
+        markerEl.style.border = '2px solid black'; // Optional: Add a black border
+
+        new mapboxgl.Marker(markerEl)
             .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
             .addTo(map);
     });
