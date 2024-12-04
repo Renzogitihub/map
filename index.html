@@ -12,23 +12,18 @@
         zoom: 10 // Initial zoom level
     });
 
-    // Modify attribution content with a delay to ensure it's rendered
-    function updateAttribution() {
+    // Listen for the "idle" event, which ensures the map is fully rendered
+    map.on('idle', () => {
         const attribution = document.querySelector('.mapboxgl-ctrl-attribution');
         if (attribution) {
-            // Replace the "Improve this map" link
-            attribution.innerHTML = attribution.innerHTML.replace(
-                /<a href="[^"]*map-feedback[^"]*"[^>]*>Improve this map<\/a>/,
-                '<a href="https://labs.mapbox.com/contribute/" target="_blank">Improve this map</a>'
-            );
-        } else {
-            // Retry after a short delay if the attribution is not yet available
-            setTimeout(updateAttribution, 100);
+            // Find all links in the attribution and update "Improve this map"
+            const links = attribution.querySelectorAll('a');
+            links.forEach(link => {
+                if (link.textContent === 'Improve this map') {
+                    link.href = 'https://labs.mapbox.com/contribute/'; // Update the URL
+                    link.target = '_blank'; // Open in a new tab
+                }
+            });
         }
-    }
-
-    // Call the function to update attribution after the map is loaded
-    map.on('load', () => {
-        updateAttribution();
     });
 </script>
