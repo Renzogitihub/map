@@ -13,14 +13,11 @@
         attributionControl: false // Disable the default attribution control
     });
 
-    // Add custom text-only attributions
-    map.addControl(new mapboxgl.AttributionControl({
-        compact: true, // Optional: Compact layout for attribution
-        customAttribution: '© Mapbox © OpenStreetMap'
-    }));
+    // Add text-only attribution manually
+    const attributionControl = new mapboxgl.AttributionControl({
+        compact: false, // Set to true for compact style if needed
+        customAttribution: '© Mapbox © OpenStreetMap' // Text-only attributions
+    });
 
-    // Optional: Add a marker
-    const marker = new mapboxgl.Marker()
-        .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
-        .addTo(map);
+    map.addControl(attributionControl, 'bottom-right'); // Add control to the bottom-right corner
 </script>
