@@ -13,11 +13,19 @@
         attributionControl: false // Disable the default attribution control
     });
 
-    // Add text-only attribution manually
-    const attributionControl = new mapboxgl.AttributionControl({
-        compact: false, // Set to true for compact style if needed
-        customAttribution: '© Mapbox © OpenStreetMap' // Text-only attributions
-    });
+    // Add a custom attribution div manually
+    map.on('load', () => {
+        const attributionDiv = document.createElement('div');
+        attributionDiv.className = 'custom-attribution';
+        attributionDiv.style.position = 'absolute';
+        attributionDiv.style.bottom = '10px';
+        attributionDiv.style.right = '10px';
+        attributionDiv.style.background = 'rgba(255, 255, 255, 0.8)';
+        attributionDiv.style.padding = '5px';
+        attributionDiv.style.borderRadius = '5px';
+        attributionDiv.style.fontSize = '12px';
+        attributionDiv.innerText = '© Mapbox © OpenStreetMap';
 
-    map.addControl(attributionControl, 'bottom-right'); // Add control to the bottom-right corner
+        map.getContainer().appendChild(attributionDiv);
+    });
 </script>
