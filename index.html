@@ -1,7 +1,23 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.css" rel="stylesheet" />
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.14.1/mapbox-gl.js"></script>
 
-<div id="map" style="width: 100%; height: 400px;"></div>
+<div id="map-container">
+    <div id="map"></div>
+</div>
+
+<style>
+    #map-container {
+        width: 400px; /* Set the desired square size */
+        height: 400px; /* Set the desired square size */
+        position: relative;
+        margin: 20px; /* Add some space around */
+    }
+
+    #map {
+        width: 100%;
+        height: 100%;
+    }
+</style>
 
 <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXptcmRuMSIsImEiOiJjbTQ5cGRwZ3QwY2V1MnNuN2xiNmtreTBmIn0.tEGvXdH-D0GVHg07GTWSPw';
@@ -16,33 +32,6 @@
     });
 
     map.on('load', () => {
-        // Remove any default attribution elements manually
-        const attributionContainers = document.querySelectorAll('.mapboxgl-ctrl-attribution');
-        attributionContainers.forEach(container => container.remove());
-
-        // Create and style custom attribution
-        const attributionDiv = document.createElement('div');
-        attributionDiv.className = 'custom-attribution';
-        attributionDiv.style.position = 'absolute';
-        attributionDiv.style.bottom = '10px';
-        attributionDiv.style.right = '10px';
-        attributionDiv.style.background = 'rgba(255, 255, 255, 0.8)';
-        attributionDiv.style.padding = '5px';
-        attributionDiv.style.borderRadius = '5px';
-        attributionDiv.style.fontSize = '12px';
-        attributionDiv.style.lineHeight = '1.5';
-        attributionDiv.style.color = 'black'; // Set text color to black
-
-        // Add custom attribution text with links
-        attributionDiv.innerHTML = `
-            <a href="https://www.mapbox.com/about/maps/" target="_blank" rel="noopener noreferrer" style="color: black;">© Mapbox</a> |
-            <a href="http://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" style="color: black;">© OpenStreetMap</a> |
-            <a href="https://labs.mapbox.com/contribute/" target="_blank" rel="noopener noreferrer" style="color: black;">Improve this map</a>
-        `;
-
-        // Append the custom attribution div to the map container
-        map.getContainer().appendChild(attributionDiv);
-
         // Add a custom placemark marker
         const markerEl = document.createElement('div');
         markerEl.style.width = '25px';
@@ -61,4 +50,3 @@
         .addTo(map);
     });
 </script>
-
