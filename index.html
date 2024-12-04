@@ -9,22 +9,26 @@
         container: 'map', // container ID
         style: 'mapbox://styles/azmrdn1/cm49pxayi014t01qrd4iackcl', // style URL
         center: [-95.4036795, 29.7806], // Replace with your coordinates
-        zoom: 10, // Initial zoom level
-        attributionControl: false // Disable the default attribution control
+        zoom: 10 // Initial zoom level
     });
 
-    // Add custom attribution to include updated "Improve this map" link
-    map.addControl(new mapboxgl.AttributionControl({
-        compact: true, // Optional: Compact layout for attribution
-        customAttribution: `
-            <a href="https://www.mapbox.com/about/maps/" target="_blank">© Mapbox</a>
-            <a href="http://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap</a>
-            <a href="https://labs.mapbox.com/contribute/" target="_blank">Improve this map</a>
-        `
-    }));
+    // Modify attribution content with a delay to ensure it's rendered
+    function updateAttribution() {
+        const attribution = document.querySelector('.mapboxgl-ctrl-attribution');
+        if (attribution) {
+            // Replace the "Improve this map" link
+            attribution.innerHTML = attribution.innerHTML.replace(
+                /<a href="[^"]*map-feedback[^"]*"[^>]*>Improve this map<\/a>/,
+                '<a href="https://labs.mapbox.com/contribute/" target="_blank">Improve this map</a>'
+            );
+        } else {
+            // Retry after a short delay if the attribution is not yet available
+            setTimeout(updateAttribution, 100);
+        }
+    }
 
-    // Optional: Add a marker
-    const marker = new mapboxgl.Marker()
-        .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
-        .addTo(map);
+    // Call the function to update attribution after the map is loaded
+    map.on('load', () => {
+        updateAttribution();
+    });
 </script>
