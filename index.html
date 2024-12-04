@@ -42,14 +42,14 @@
         // Append the custom attribution div to the map container
         map.getContainer().appendChild(attributionDiv);
 
-        // Add a custom white marker
+        // Add a custom placemark marker
         const markerEl = document.createElement('div');
-        markerEl.style.width = '20px';
-        markerEl.style.height = '20px';
-        markerEl.style.backgroundColor = '#ffffff'; // Explicit white color
-        markerEl.style.borderRadius = '50%'; // Makes it circular
-        markerEl.style.border = '2px solid black'; // Black border for visibility
-        markerEl.style.boxShadow = '0 2px 5px rgba(0, 0, 0, 0.3)'; // Optional shadow for better visibility
+        markerEl.style.width = '30px';
+        markerEl.style.height = '50px'; // Adjust height for placemark proportions
+        markerEl.style.backgroundImage = 'url("https://img.icons8.com/ios-filled/50/ffffff/marker.png")';
+        markerEl.style.backgroundSize = 'contain'; // Fit the image
+        markerEl.style.backgroundRepeat = 'no-repeat';
+        markerEl.style.backgroundPosition = 'center';
 
         new mapboxgl.Marker(markerEl)
             .setLngLat([-95.4036795, 29.7806]) // Replace with your coordinates
